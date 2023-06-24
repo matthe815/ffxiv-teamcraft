@@ -120,7 +120,7 @@
     "electron-edge-js": "^12.18.5",
     "electron-is-dev": "^1.1.0",
     "electron-log": "^3.0.6",
-    "electron-store": "^5.2.0",
+    "electron-store": "^8.0.0",
     "fs-extra": "^7.0.1",
     "hash-files": "^1.1.1",
     "is-elevated": "^3.0.0",
