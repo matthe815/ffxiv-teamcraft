@@ -25,7 +25,10 @@ const routes: Routes = [
   {
     path: '',
     component: MetricsComponent,
-    canActivate: [VersionLockGuard]
+    canActivate: [VersionLockGuard],
+    data: {
+      title: 'TITLE.Treasure_Finder'
+    }
   }
 ];
 

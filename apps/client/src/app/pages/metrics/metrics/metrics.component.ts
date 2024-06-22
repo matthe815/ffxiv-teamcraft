@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, DestroyRef, inject, Inject } from '@angular/core';
 import { PlayerMetricsService } from '../../../modules/player-metrics/player-metrics.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { endOfDay, startOfDay, startOfMonth, startOfWeek } from 'date-fns';
@@ -36,6 +36,7 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { AsyncPipe } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
     selector: 'app-metrics',
@@ -87,6 +88,8 @@ export class MetricsComponent extends TeamcraftPageComponent {
   editMode = false;
 
   layoutBackup: MetricsDashboardLayout;
+
+  destroyRef = inject(DestroyRef)
 
   constructor(private metricsService: PlayerMetricsService, private translate: TranslateService,
               protected seoService: SeoService, @Inject(METRICS_DISPLAY_FILTERS) private filters: MetricsDisplayFilter<any>[],
@@ -256,7 +259,11 @@ export class MetricsComponent extends TeamcraftPageComponent {
   }
 
   protected getSeoMeta(): Observable<Partial<SeoMetaConfig>> {
-    return of({});
+    return of({
+      title: 'TITLE.Metrics_Dashboard',
+      description: `A dashboard to display metrics about your in-game activities.`,
+      image: 'https://ffxivteamcraft.com/assets/logo.png'
+    })
   }
 
 }
